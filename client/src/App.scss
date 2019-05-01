@@ -1,0 +1,41 @@
+@import './assets/scss/base.scss';
+
+.app {
+  .content {
+    .ads {
+      > img {
+
+      }
+    }
+    .desc {
+      h1 {
+
+      }
+      p {
+
+      }
+    }
+    .create {
+      .title {
+        h3 {
+
+        }
+      }
+      .buttons {
+        .facebook {
+          img {
+
+          }
+        }
+        .google {
+          img {
+            
+          }
+        }
+      }
+    }
+  }
+  .footer {
+
+  }
+}
