@@ -34,9 +34,9 @@ class Home extends Component {
           <div className={style.desc}>
             <h1>Say your SafeWrd, and stream for help.</h1>
             <p>
-              Without ever reach for your phone, say your own personal safe word
-              when in trouble and your phone wakes from locked screen, streaming
-              live video to your friends and family.
+              Without ever reaching for your phone, say your own personal safe
+              word when in trouble and your phone wakes from locked screen,
+              streaming live video to your friends and family.
             </p>
           </div>
           <div className={style.create}>

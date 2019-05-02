@@ -5,6 +5,10 @@
     padding-top: 162px;
     text-align: center;
 
+    @include phone {
+      padding-top: 70px;
+    }
+
     .ads {
       position: relative;
       width: 1200px;
@@ -22,6 +26,7 @@
       }
       @include phone {
         width: auto;
+        height: 240px;
         background-position: center;
       }
 
