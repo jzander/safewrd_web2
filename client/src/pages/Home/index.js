@@ -45,7 +45,9 @@ class Home extends Component {
             </div>
             <div className={style.buttons}>
               <div className={style.facebook}>
-                <img src={imgFacebookMsg} alt="facebook-message" />
+                <a href="https://m.me/safewrdbot">
+                  <img src={imgFacebookMsg} alt="facebook-message" />
+                </a>
               </div>
               <div className={style.google}>
                 <img src={imgGoogleAssist} alt="google-assist" />
