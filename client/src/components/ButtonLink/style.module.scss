@@ -1,7 +1,23 @@
-@import '../../assets/scss/base.scss';
+@import "../../assets/scss/base.scss";
 
-.button {
-  span {
-    
+.buttonWrapper {
+  button {
+    height: 48px;
+    padding: 0px 29px;
+    color: #ffffff;
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 400;
+    border: none;
+    background: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+    &.active {
+      box-shadow: 0 23px 21px -12px rgba(0, 0, 0, 0.18) !important;
+      border-radius: 52px;
+      background-image: linear-gradient(135deg, #00a2ff 0%, #5560f3 100%);
+    }
   }
 }

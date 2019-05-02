@@ -1,0 +1,176 @@
+@import "../../assets/scss/base.scss";
+
+.home {
+  .content {
+    padding-top: 162px;
+    text-align: center;
+
+    .ads {
+      position: relative;
+      width: 1200px;
+      height: 341px;
+      margin: 0 auto;
+      background-size: cover;
+      background-position: -5px 32px;
+      background-repeat: no-repeat;
+      background-image: url("../../assets/images/map_bg.png");
+
+      .bright {
+        width: 417px;
+        height: 417px;
+        background-image: url("../../assets/images/oval.png");
+        border-radius: 50%;
+        opacity: 0.42;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      > img {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 2;
+      }
+    }
+    .desc {
+      width: 883px;
+      margin: 0 auto;
+
+      h1 {
+        color: #ffffff;
+        font-family: $poppins;
+        font-size: 40px;
+        margin: 0px;
+      }
+      p {
+        opacity: 0.54;
+        color: #ffffff;
+        font-family: $poppins;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+    .create {
+      width: 280px;
+      padding-bottom: 27px;
+      border-radius: 11px;
+      border: 2px solid rgba(256, 256, 256, 0.2);
+      display: flex;
+      flex-direction: column;
+      margin: 30px auto 0px;
+
+      .title {
+        h3 {
+          color: #ffffff;
+          font-family: $poppins-semi-bold;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+
+        > div {
+          &.facebook {
+            padding: 10px 10px 3px;
+            background-color: white;
+            border-radius: 17px;
+
+            img {
+              width: 46px;
+              height: 47px;
+            }
+          }
+          &.google {
+            padding: 12px 10px 7px;
+            border-radius: 17px;
+            background-color: white;
+            margin-left: 15px;
+
+            img {
+              width: 47px;
+              height: 41px;
+            }
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: darken(white, 7%);
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    width: 406px;
+    padding: 20px 0px;
+    background-color: white;
+    margin-bottom: 12px;
+    margin-left: 12px;
+
+    .rating {
+      display: flex;
+      padding-left: 20px;
+
+      .circleMark {
+        width: 60px;
+        height: 60px;
+        background-color: #d7edff;
+        border-radius: 50%;
+        padding: 8px;
+
+        span {
+          width: 42px;
+          height: 42px;
+          background-color: #0091f9;
+          border-radius: 50%;
+          display: inline-block;
+        }
+      }
+      .desc {
+        margin-left: 15px;
+
+        .title {
+          padding-left: 6px;
+
+          span {
+            color: #4b4e61;
+            font-size: 16px;
+
+            strong {
+              color: #6ac2fb;
+            }
+          }
+        }
+        .verified {
+          display: flex;
+          align-items: center;
+
+          .verifiedImage {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            position: relative;
+            background-color: #99d4fd;
+            border-radius: 50%;
+
+            img {
+              width: 9px;
+              height: 8px;
+              position: absolute;
+              left: 50%;
+              right: 50%;
+              transform: translate(-50%, 58%);
+            }
+          }
+          .verifiedLabel {
+            margin-left: 6px;
+            color: #d3d9e0;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}

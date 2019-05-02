@@ -1,0 +1,27 @@
+@import "../../assets/scss/base.scss";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 38px 41px 0px 53px;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    span {
+      color: white;
+      font-size: 22px;
+      margin-left: 8px;
+    }
+  }
+  .links {
+    display: flex;
+    align-items: center;
+  }
+}
