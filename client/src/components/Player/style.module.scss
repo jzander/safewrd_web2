@@ -6,12 +6,12 @@
   height: 32px;
   padding-right: 20px;
   border-radius: 16px;
-  background-color: #3053d6;
+  background-color: $blue-secondary;
 
   .button {
     width: 32px;
     height: 32px;
-    background-color: #ffffff;
+    background-color: $white;
     border-radius: 50%;
     padding: 5px 11px;
 
@@ -22,14 +22,14 @@
     }
     &:hover {
       cursor: pointer;
-      background-color: darken(#ffffff, 7%);
+      background-color: darken($white, 7%);
     }
   }
   .title {
     margin-left: 10px;
 
     span {
-      color: #ffffff;
+      color: $white;
       font-family: $poppins-semi-bold;
       font-size: 15px;
       font-weight: 600;
@@ -45,12 +45,12 @@
     .statusImg {
       width: 7px;
       height: 7px;
-      background-color: #fd4b51;
+      background-color: $red-primary;
       border-radius: 50%;
       display: inline-block;
     }
     .statusLabel {
-      color: #ffffff;
+      color: $white;
       font-family: $poppins-semi-bold;
       font-size: 9px;
       font-weight: 600;

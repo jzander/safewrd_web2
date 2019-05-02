@@ -104,7 +104,7 @@
       }
 
       h1 {
-        color: #ffffff;
+        color: $white;
         font-family: $poppins;
         font-size: 40px;
         margin: 0px;
@@ -118,7 +118,7 @@
       }
       p {
         opacity: 0.54;
-        color: #ffffff;
+        color: $white;
         font-family: $poppins;
         font-size: 18px;
         font-weight: 400;
@@ -139,7 +139,7 @@
 
       .title {
         h3 {
-          color: #ffffff;
+          color: $white;
           font-family: $poppins-semi-bold;
           font-size: 16px;
           font-weight: 600;
@@ -204,7 +204,7 @@
       .circleMark {
         width: 60px;
         height: 60px;
-        background-color: #d7edff;
+        background-color: $blue-lightest;
         border-radius: 50%;
         padding: 8px;
 
@@ -217,7 +217,7 @@
         span {
           width: 42px;
           height: 42px;
-          background-color: #0091f9;
+          background-color: $blue-lighter;
           border-radius: 50%;
           display: inline-block;
 
@@ -234,7 +234,7 @@
           padding-left: 6px;
 
           span {
-            color: #4b4e61;
+            color: $black-lighter;
             font-size: 16px;
 
             @include phone {
@@ -242,7 +242,7 @@
             }
 
             strong {
-              color: #6ac2fb;
+              color: $blue-lighter-secondary;
             }
           }
         }
@@ -255,7 +255,7 @@
             height: 16px;
             display: inline-block;
             position: relative;
-            background-color: #99d4fd;
+            background-color: $blue-lighter-third;
             border-radius: 50%;
 
             img {
@@ -269,7 +269,7 @@
           }
           .verifiedLabel {
             margin-left: 6px;
-            color: #d3d9e0;
+            color: $grey-primary;
             font-size: 15px;
 
             @include phone {
