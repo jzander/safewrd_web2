@@ -21,30 +21,15 @@ class Home extends Component {
           <div className={style.ads}>
             <div className={style.bright} />
             <img src={imgPhone} alt="phone" />
-            <Player
-              title="Henry"
-              style={{
-                position: "absolute",
-                left: "471px",
-                top: "-61px"
-              }}
-            />
-            <Player
-              title="Mom"
-              style={{
-                position: "absolute",
-                left: "645px",
-                top: "-11px"
-              }}
-            />
-            <Player
-              title="Dad"
-              style={{
-                position: "absolute",
-                left: "585px",
-                top: "68px"
-              }}
-            />
+            <div className={style.playerHenry}>
+              <Player title="Henry" />
+            </div>
+            <div className={style.playerMom}>
+              <Player title="Mom" />
+            </div>
+            <div className={style.playerDad}>
+              <Player title="Dad" />
+            </div>
           </div>
           <div className={style.desc}>
             <h1>Say your SafeWrd, and stream for help.</h1>

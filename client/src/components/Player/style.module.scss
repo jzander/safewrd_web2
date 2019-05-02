@@ -1,16 +1,12 @@
 @import "../../assets/scss/base.scss";
 
 .player {
-  position: absolute;
-  left: 0px;
-  top: 0px;
   display: flex;
   align-items: center;
   height: 32px;
   padding-right: 20px;
   border-radius: 16px;
   background-color: #3053d6;
-  z-index: 3;
 
   .button {
     width: 32px;
@@ -19,6 +15,11 @@
     border-radius: 50%;
     padding: 5px 11px;
 
+    @include phone {
+      width: 20px;
+      height: 20px;
+      padding: 0px;
+    }
     &:hover {
       cursor: pointer;
       background-color: darken(#ffffff, 7%);
@@ -32,6 +33,10 @@
       font-family: $poppins-semi-bold;
       font-size: 15px;
       font-weight: 600;
+
+      @include phone {
+        font-size: 12px;
+      }
     }
   }
   .status {

@@ -15,6 +15,16 @@
       background-repeat: no-repeat;
       background-image: url("../../assets/images/map_bg.png");
 
+      @include tablet {
+        width: 850px;
+        background-size: 151%;
+        background-position: bottom;
+      }
+      @include phone {
+        width: auto;
+        background-position: center;
+      }
+
       .bright {
         width: 417px;
         height: 417px;
@@ -25,23 +35,86 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
+
+        @include phone {
+          width: 250px;
+          height: 250px;
+        }
       }
       > img {
         position: absolute;
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 2;
+
+        @include phone {
+          width: 330px;
+        }
+      }
+      .playerHenry {
+        position: absolute;
+        left: 471px;
+        top: -61px;
+        z-index: 3;
+
+        @include tablet {
+          left: 301px;
+        }
+        @include phone {
+          left: 45%;
+        }
+      }
+      .playerMom {
+        position: absolute;
+        left: 645px;
+        top: -11px;
+        z-index: 3;
+
+        @include tablet {
+          left: 489px;
+        }
+        @include phone {
+          left: 60%;
+        }
+      }
+      .playerDad {
+        position: absolute;
+        left: 585px;
+        top: 68px;
+        z-index: 3;
+
+        @include tablet {
+          left: 415px;
+        }
+        @include phone {
+          left: 57%;
+        }
       }
     }
     .desc {
       width: 883px;
       margin: 0 auto;
 
+      @include tablet {
+        width: 505px;
+      }
+      @include phone {
+        width: auto;
+        padding: 0px 20px;
+      }
+
       h1 {
         color: #ffffff;
         font-family: $poppins;
         font-size: 40px;
         margin: 0px;
+
+        @include tablet {
+          font-size: 25px;
+        }
+        @include phone {
+          font-size: 15px;
+        }
       }
       p {
         opacity: 0.54;
@@ -49,6 +122,10 @@
         font-family: $poppins;
         font-size: 18px;
         font-weight: 400;
+
+        @include tablet {
+          font-size: 14px;
+        }
       }
     }
     .create {
@@ -109,8 +186,19 @@
     margin-bottom: 12px;
     margin-left: 12px;
 
+    @include tablet {
+      width: 50%;
+      margin-top: 20px;
+      margin: 20px auto 12px;
+    }
+    @include phone {
+      width: 90%;
+      margin: 20px auto;
+    }
+
     .rating {
       display: flex;
+      align-items: center;
       padding-left: 20px;
 
       .circleMark {
@@ -120,12 +208,23 @@
         border-radius: 50%;
         padding: 8px;
 
+        @include phone {
+          width: 40px;
+          height: 40px;
+          padding: 4px;
+        }
+
         span {
           width: 42px;
           height: 42px;
           background-color: #0091f9;
           border-radius: 50%;
           display: inline-block;
+
+          @include phone {
+            width: 32px;
+            height: 32px;
+          }
         }
       }
       .desc {
@@ -137,6 +236,10 @@
           span {
             color: #4b4e61;
             font-size: 16px;
+
+            @include phone {
+              font-size: 12px;
+            }
 
             strong {
               color: #6ac2fb;
@@ -168,6 +271,10 @@
             margin-left: 6px;
             color: #d3d9e0;
             font-size: 15px;
+
+            @include phone {
+              font-size: 12px;
+            }
           }
         }
       }

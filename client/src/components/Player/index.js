@@ -7,7 +7,7 @@ import style from "./style.module.scss";
 class Player extends Component {
   render() {
     return (
-      <div className={style.player} style={this.props.style}>
+      <div className={style.player}>
         <div className={style.button}>
           <img src={imgPlayer} alt="player" />
         </div>
