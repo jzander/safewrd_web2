@@ -6,8 +6,10 @@ import style from "./style.module.scss";
 
 class Player extends Component {
   render() {
+    const { delay=0 } = this.props;
+    const animateStyle = { animationDelay: `${delay * 500}ms` };
     return (
-      <div className={style.player}>
+      <div className={style.player} style={animateStyle}>
         <div className={style.button}>
           <img src={imgPlayer} alt="player" />
         </div>

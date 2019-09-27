@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom'
 
 // Components
 import ButtonLink from "../../components/ButtonLink";
@@ -7,14 +8,12 @@ import ButtonLink from "../../components/ButtonLink";
 import imgLogo from "../../assets/images/safewrd_logo.svg";
 import style from "./style.module.scss";
 
-const MENU_ABOUT = 0;
-const MENU_CONTACT = 1;
 class Header extends Component {
-  state = {
-    activeID: MENU_CONTACT
-  };
-
   render() {
+
+    const {history} = this.props;
+    const { pathname } = history.location;
+
     return (
       <div className={style.header}>
         <div className={style.logo}>
@@ -24,18 +23,13 @@ class Header extends Component {
         <div className={style.links}>
           <ButtonLink
             label="About"
-            active={this.state.activeID === MENU_ABOUT}
-            onClick={() => {
-              this.setState({ activeID: MENU_ABOUT });
-              console.log("adfasd");
-            }}
+            active={pathname === '/'}
+            onClick={() => history.push('/')}
           />
           <ButtonLink
             label="Contact us"
-            active={this.state.activeID === MENU_CONTACT}
-            onClick={() => {
-              this.setState({ activeID: MENU_CONTACT });
-            }}
+            active={pathname === '/contact'}
+            onClick={() => history.push('/contact')}
           />
         </div>
       </div>
@@ -43,4 +37,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);
