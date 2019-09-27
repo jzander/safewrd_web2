@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // Components
 import Header from "../../layout/Header";
+import Footer from "../../components/Footer";
 import Player from "../../components/Player";
 
 // Resources
@@ -25,10 +26,10 @@ class Home extends Component {
               <Player title="Henry" />
             </div>
             <div className={style.playerMom}>
-              <Player title="Mom" />
+              <Player title="Mom" delay={2} />
             </div>
             <div className={style.playerDad}>
-              <Player title="Dad" />
+              <Player title="Dad" delay={1} />
             </div>
           </div>
           <div className={style.desc}>
@@ -55,34 +56,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div className={style.footer}>
-          <div className={style.visited}>
-            <div className={style.rating}>
-              <div className={style.circleMark}>
-                <span />
-              </div>
-              <div className={style.desc}>
-                <div className={style.title}>
-                  <span>
-                    <strong>88 people</strong> are viewing this page
-                  </span>
-                </div>
-                <div className={style.verified}>
-                  <span className={style.verifiedImage}>
-                    <img src={imgTick} alt="tick" />
-                  </span>
-                  <span className={style.verifiedLabel}>Verified by Proof</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={style.copyright}>
-            <p>
-              &copy;2019, Tranzmt, Inc. and Safewrd are trademarks of Tranzmt,
-              Inc.
-            </p>
-          </div>
-        </div>
+        <Footer />
       </div>
     );
   }

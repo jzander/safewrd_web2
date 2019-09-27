@@ -21,6 +21,15 @@ body {
   }
 }
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+.App {
+  padding-bottom: 200px;
+}
+
 div {
   // border: 1px solid #ddd;
 }
