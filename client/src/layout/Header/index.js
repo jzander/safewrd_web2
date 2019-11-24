@@ -22,6 +22,11 @@ class Header extends Component {
         </div>
         <div className={style.links}>
           <ButtonLink
+            label="VIP"
+            active={pathname === '/vip'}
+            onClick={() => history.push('/vip')}
+          />
+          <ButtonLink
             label="About"
             active={pathname === '/'}
             onClick={() => history.push('/')}
