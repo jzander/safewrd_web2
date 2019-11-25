@@ -8,7 +8,8 @@ import style from "./style.module.scss";
 
 
 // TODO: Move to config
-const FORM_URL = 'https://safewrd.app/api/form';
+const FORM_URL = 'https://api.tranzmt.it/v1/ambassador';
+// const FORM_URL = 'https://safewrd.app/api/form';
 // const FORM_URL = 'http://localhost:5000/api/form';
 // const FORM_URL = 'http://159.203.169.170/v1/ambassador';
 // TODO: Use Johnny
