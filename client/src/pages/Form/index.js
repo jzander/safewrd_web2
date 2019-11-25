@@ -8,8 +8,11 @@ import style from "./style.module.scss";
 
 
 // TODO: Move to config
-const BASE_URL = 'http://localhost:5000';
-// const BASE_URL = 'https://safewrd.app';
+const FORM_URL = 'https://safewrd.app/api/form';
+// const FORM_URL = 'http://localhost:5000/api/form';
+// const FORM_URL = 'http://159.203.169.170/v1/ambassador';
+// TODO: Use Johnny
+const CALENDLY_URL = 'https://calendly.com/whats-your-safewrd/ambassador-vip-screening';
 
 
 const Input = (props) => {
@@ -20,15 +23,59 @@ const Row = (props) => {
   return <div className={style.row} {...props}>{props.children}</div>;
 };
 
+
+/**
+ * Turn an object into a query string
+ * @param {object} data 
+ */
+function toQueryString(data) {
+  return '?' + Object.keys(data).map(key => `${key}=${data[key]}`).join('&');
+}
+
+/**
+ * Triggers the Calendly Popup
+ * @param {object} data 
+ * @param {string} data.firstName
+ * @param {string} data.lastName
+ * @param {string} data.phone
+ * @param {string} data.email
+ */
+function popCalendly({ firstName, lastName, phone, email }) {
+  const payload = {
+    firstNname: firstName,
+    lastNname: lastName,
+    email,
+    phone,
+  };
+  const url = CALENDLY_URL + toQueryString(payload);
+  window.Calendly.initPopupWidget({ url });
+  return false;
+}
+
+
+async function imageToDataUrl(input) {
+  if (input && input.files && input.files[0]) {
+    return new Promise((ok, fail) => {
+      var reader = new FileReader();
+      reader.onload = e => ok(e.target.result);
+      reader.onerror = fail;
+      reader.readAsDataURL(input.files[0]);
+    });
+  }
+  return null;
+}
+
 export default () => {
 
-  const [loading, setLoading]     = useState(false);
+  const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName]   = useState('');
-  const [phone, setPhone]         = useState('');
-  const [email, setEmail]         = useState('');
-  const [file, setFile]           = useState('');
-  const [formEl, setFormEl]       = useState(null);
+  const [lastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [file, setFile] = useState('');
+  const [formEl, setFormEl] = useState(null);
+
+  const inputRef = useRef(null);
 
   function formIsInvalid() {
 
@@ -70,8 +117,6 @@ export default () => {
         e.preventDefault();
       }
 
-      console.log({ loading });
-
       if (loading) return;
       setLoading(true);
 
@@ -80,15 +125,37 @@ export default () => {
         return;
       }
 
-      const form = new FormData(formEl);
+      const photo = await imageToDataUrl(inputRef.current);
 
-      await fetch(`${BASE_URL}/api/form`, {
+      const resp = await fetch(FORM_URL, {
         method: 'post',
-        body: form,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          phone,
+          email,
+          photo,
+        }),
       }).then(r => r.json());
 
+      if (resp.Error) {
+        alert(resp.Message);
+        setLoading(false);
+        return;
+      }
+
+      popCalendly({
+        firstName,
+        lastName,
+        email,
+        phone,
+      });
+
       // TODO: Re-enable
-      // resetForm();
+      setTimeout(resetForm, 3000);
 
     } catch (e) {
       console.warn(e);
@@ -120,7 +187,7 @@ export default () => {
 
           <label>
             Phone
-          <Input  name="phone" type="tel" value={phone} onValue={setPhone} />
+          <Input name="phone" type="tel" value={phone} onValue={setPhone} />
           </label>
 
           <label>
@@ -131,12 +198,12 @@ export default () => {
           <label htmlFor="file">
             Photo
           </label>
-          
+
           <div className={style.fileWrapper}>
-            { file && <button onClick={() => setFile(null)}>Remove File</button> }
-            <Input name="file" id="file" type="file" value={file} onValue={setFile} />
+            {file && <button onClick={() => setFile(null)}>Remove File</button>}
+            <input ref={inputRef} name="file" id="file" type="file" value={file} onChange={e => setFile(e.target.value)} />
           </div>
-          
+
           <button type="submit" disabled={loading}>Submit</button>
 
         </form>
