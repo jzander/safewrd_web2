@@ -53,7 +53,7 @@ class ThankYou extends Component {
           <h4>Your Name</h4>
           <p>{params.invitee_full_name}</p>
 
-          <h4>End Time</h4>
+          <h4>Your Email</h4>
           <p>{params.invitee_email}</p>
 
         </div>

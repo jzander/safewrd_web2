@@ -210,7 +210,6 @@ export default () => {
         </form>
       </div>
 
-      <Footer />
     </div>
   );
 }
