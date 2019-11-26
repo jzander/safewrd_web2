@@ -64,6 +64,7 @@ class Header extends Component {
               onClick={() => history.push('/contact')}
             />
           </div>
+
         </div>
       );
     }

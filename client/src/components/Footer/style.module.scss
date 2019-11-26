@@ -9,8 +9,7 @@
   margin-bottom: 16px;
   
   .inner {
-  
-
+    
     .visited {
       width: 406px;
       padding: 20px 0px;
@@ -107,11 +106,13 @@
               @include phone {
                 font-size: 12px;
               }
+
             }
           }
         }
       }
     }
+
     .copyright {
       text-align: center;
       p {
