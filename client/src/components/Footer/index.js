@@ -12,7 +12,9 @@ class Footer extends Component {
     return (
       <div className={style.footer}>
         <div className={style.inner}>
-          <div className={style.visited}>
+
+          {/* <div className={style.visited}>
+
             <div className={style.rating}>
               <div className={style.circleMark}>
                 <span />
@@ -31,7 +33,9 @@ class Footer extends Component {
                 </div>
               </div>
             </div>
-          </div>
+
+          </div> */}
+
           <div className={style.copyright}>
             <p>
               &copy;2019, Tranzmt, Inc. and Safewrd are trademarks of Tranzmt,
