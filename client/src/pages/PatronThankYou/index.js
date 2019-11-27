@@ -8,6 +8,16 @@ import Footer from "../../components/Footer";
 
 import style from "./style.module.scss";
 
+function getSearchParams() {
+  return window.location.search
+    .slice(1)
+    .split('&')
+    .reduce((acc, n) => {
+      const [key, value] = n.split('=');
+      acc[key] = decodeURIComponent(value);
+      return acc;
+    }, {});
+}
 
 
 class ThankYou extends Component {
