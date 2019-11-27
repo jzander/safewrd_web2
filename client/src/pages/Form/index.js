@@ -43,8 +43,8 @@ function toQueryString(data) {
  */
 function popCalendly({ firstName, lastName, phone, email }) {
   const payload = {
-    firstNname: firstName,
-    lastNname: lastName,
+    firstName: firstName,
+    lastName: lastName,
     email,
     phone,
   };
