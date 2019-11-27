@@ -35,6 +35,7 @@ export default () => {
   const [nickname, setNickname] = useState('');
   const [phone, setPhone] = useState('');
 
+  const [formEl, setFormEl] = useState(null);
   const inputRef = useRef(null);
 
   function formIsInvalid() {
