@@ -25,9 +25,11 @@ class PatronThankYou extends Component {
 
     const params = getSearchParams();
 
+    /*
     if (!params.id) {
       return <Redirect to="/Patron?error=1" />;
     }
+    */
 
     return (
       <div className={style.home}>
