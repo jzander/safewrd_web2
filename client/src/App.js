@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/about" component={Home} />
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/patron" component={Patron} />
+          <Route exact path="/patronthankyou" component={PatronThankYou} />
           <Route exact path="/contact" component={Contact} />
         </div>
       </Router>
