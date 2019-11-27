@@ -20,13 +20,13 @@ function getSearchParams() {
 }
 
 
-class ThankYou extends Component {
+class PatronThankYou extends Component {
   render() {
 
     const params = getSearchParams();
 
     if (!params.id) {
-      return <Redirect to="/Patron" />;
+      return <Redirect to="/Patron?error=1" />;
     }
 
     return (
