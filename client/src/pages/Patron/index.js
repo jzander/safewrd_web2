@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Redirect } from 'react-router-dom';
 
 // Components
 import style from "./style.module.scss";
@@ -94,6 +95,8 @@ export default () => {
         alert(resp.Message);
         setLoading(false);
         return;
+      } else {
+        return <Redirect to="/PatronThankYou?phone=resp.Lead.phone" />;
       }
 
       // TODO: Re-enable

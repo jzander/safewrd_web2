@@ -176,6 +176,9 @@ export default () => {
 
         <h1>Become a VIP</h1>
 
+        Making a difference doesn't mean you have to 'go broke' doing it.  Join our team.  Make a difference and make some money too.
+Relationships mean everything to us. Sign up below, and pick a time you want to chat and we promise we won't be late.
+
         <form ref={setFormEl} onSubmit={submit}>
           <Row>
             <label>

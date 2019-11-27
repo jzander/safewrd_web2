@@ -37,11 +37,9 @@ class PatronThankYou extends Component {
         <h1>Congratulations! We will be texting you to get started shortly.</h1>
         <div className={style.content}>
 
-          <h4>Phone</h4>
-          <p>{params.phone}</p>
-
-          <h4>Your ID</h4>
-          <p>{params.id}</p>
+          <p>
+          We sent a message to {params.phone} to get you started!
+          </p>
 
         </div>
         <Footer />
