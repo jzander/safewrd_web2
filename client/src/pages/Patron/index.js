@@ -112,7 +112,7 @@ export default () => {
       <Header />
       <div className={style.content}>
 
-        <h1>Become a VIP</h1>
+        <h1>Patron Signup</h1>
 
         <form ref={setFormEl} onSubmit={submit}>
           <Row>
