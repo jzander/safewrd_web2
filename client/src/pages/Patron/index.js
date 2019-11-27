@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useRef } from "react";
 
 // Components
 import style from "./style.module.scss";
