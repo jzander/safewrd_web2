@@ -92,10 +92,12 @@ export default () => {
       }).then(r => r.json());
 
       if (resp.Error) {
+        console.log("Error found");
         alert(resp.Message);
         setLoading(false);
         return;
       } else {
+        console.log("Sending over to the thankyou page");
         return <Redirect to="/PatronThankYou?phone=resp.Lead.phone" />;
       }
 
