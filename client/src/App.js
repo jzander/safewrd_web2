@@ -9,6 +9,7 @@ import Form from "./pages/Form";
 import ThankYou from "./pages/ThankYou";
 
 import Patron from "./pages/Patron"
+import PatronThankYou from "./pages/Patron"
 
 function App() {
 
