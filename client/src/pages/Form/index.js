@@ -70,6 +70,7 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [file, setFile] = useState('');
@@ -82,6 +83,7 @@ export default () => {
     const values = {
       firstName,
       lastName,
+      nickname,
       phone,
       email,
     };
@@ -188,6 +190,11 @@ export default () => {
           </Row>
 
           <label>
+            Nickname
+          <Input name="nickname" type="tel" value={nickname} onValue={nickname} />
+          </label>
+
+          <label>
             Phone
           <Input name="phone" type="tel" value={phone} onValue={setPhone} />
           </label>
@@ -214,5 +221,3 @@ export default () => {
     </div>
   );
 }
-
-console.log(style);
