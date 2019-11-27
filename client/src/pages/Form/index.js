@@ -90,6 +90,7 @@ export default () => {
     const props = {
       firstName: 'your first name',
       lastName: 'your last name',
+      nickname: 'this is your account handle',
       phone: 'your phone number',
       email: 'your email address',
     };
@@ -136,6 +137,7 @@ export default () => {
         body: JSON.stringify({
           firstName,
           lastName,
+          nickname,
           phone,
           email,
           photo,

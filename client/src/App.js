@@ -8,6 +8,8 @@ import Contact from "./pages/Contact";
 import Form from "./pages/Form";
 import ThankYou from "./pages/ThankYou";
 
+import Patron from "./pages/Patron"
+
 function App() {
 
   if (window.location.host.match(/^vip\./)) {
@@ -17,6 +19,7 @@ function App() {
           <Route exact path="/" component={Form} />
           <Route exact path="/about" component={Home} />
           <Route exact path="/thankyou" component={ThankYou} />
+          <Route exact path="/patron" component={Patron} />
           <Route exact path="/contact" component={Contact} />
         </div>
       </Router>
