@@ -194,7 +194,7 @@ Relationships mean everything to us. Sign up below, and pick a time you want to 
 
           <label>
             Nickname
-          <Input name="nickname" type="tel" value={nickname} onValue={nickname} />
+          <Input name="nickname" type="tel" value={nickname} onValue={setNickname} />
           </label>
 
           <label>
