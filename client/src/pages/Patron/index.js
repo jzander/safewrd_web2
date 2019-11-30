@@ -98,7 +98,7 @@ export default () => {
         //setLoading(false);
         return;
       } else {
-        alert("Thank you! We have sent you an SMS message so you can get started!")
+        alert("Thank you! We have sent an SMS message to " + resp.Lead.handle );
         console.log("Sending over to the thankyou page");
         //return <Redirect to="/PatronThankYou?phone=resp.Lead.phone" />;
 

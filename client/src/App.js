@@ -11,6 +11,8 @@ import ThankYou from "./pages/ThankYou";
 import Patron from "./pages/Patron"
 import PatronThankYou from "./pages/Patron"
 
+import SafetyNetwork from "./pages/SafetyNetwork"
+
 function App() {
 
   if (window.location.host.match(/^vip\./)) {
@@ -22,6 +24,7 @@ function App() {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
+          <Route exact path="/safetynetwork" component={SafetyNetwork} />
           <Route exact path="/contact" component={Contact} />
         </div>
       </Router>
