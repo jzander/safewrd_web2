@@ -33,11 +33,12 @@ class SafetyNetwork extends Component {
     return (
       <div className={style.home}>
         <Header />
-        <h1>Congratulations! </h1>
         <div className={style.content}>
 
+          <h1>Congratulations! </h1>
           <p>
-          Your safety network is almost ready to get started. Stand by - we'll be sending you information for the next steps soon.
+          Your safety network is almost ready to get started. 
+          <br/>Stand by - we'll be sending you information for the next steps soon.
           </p>
 
         </div>
