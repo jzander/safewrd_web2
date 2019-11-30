@@ -93,8 +93,8 @@ export default () => {
       }).then(r => r.json());
 
       if (!resp.Success ) {
-        console.log("Error found");
-        alert(resp.Message);
+        console.log("Error found", resp);
+        alert(resp.Message || "Something went wrong. Please let us know!");
         //setLoading(false);
         return;
       } else {
