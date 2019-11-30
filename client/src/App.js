@@ -11,7 +11,7 @@ import ThankYou from "./pages/ThankYou";
 import Patron from "./pages/Patron"
 import PatronThankYou from "./pages/Patron"
 
-import SafetyNetwork from "./pages/SafetyNetwork"
+import FinishLine from "./pages/FinishLine"
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
-          <Route exact path="/safetynetwork" component={SafetyNetwork} />
+          <Route exact path="/finishline" component={FinishLine} />
           <Route exact path="/contact" component={Contact} />
         </div>
       </Router>

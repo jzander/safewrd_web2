@@ -19,7 +19,7 @@ function getSearchParams() {
 }
 
 
-class SafetyNetwork extends Component {
+class FinishLine extends Component {
   render() {
 
     const params = getSearchParams();
@@ -48,4 +48,4 @@ class SafetyNetwork extends Component {
   }
 }
 
-export default SafetyNetwork;
+export default FinishLine;
