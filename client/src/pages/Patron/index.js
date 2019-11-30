@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 // Components
 import style from "./style.module.scss";
@@ -94,11 +95,13 @@ export default () => {
       if (!resp.Success ) {
         console.log("Error found");
         alert(resp.Message);
-        setLoading(false);
+        //setLoading(false);
         return;
       } else {
+        alert("Thank you! We have sent you an SMS message so you can get started!")
         console.log("Sending over to the thankyou page");
         //return <Redirect to="/PatronThankYou?phone=resp.Lead.phone" />;
+
         window.location.href='/patronthankyou';
       }
 
