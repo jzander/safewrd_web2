@@ -1,6 +1,9 @@
 import React, {useEffect, useState, useRef, createRef} from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 // Components
 import Header from "../../layout/Header";
 import Footer from "../../components/Footer";
@@ -21,6 +24,12 @@ const useStyles = makeStyles({
         }
     }
 });
+
+export const VALIDATION_REGEX = {
+    email: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@(\.*[a-zA-Z0-9-]+)+(?:\.[a-zA-Z]+)+$/i,
+    phone: /^(?:\+?1[-. ]?)?(?:\(?([0-9]{3})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{4})$/,
+    phoneNumber: /^(?:\+?1[-. ]?)?(?:\(?([0-9]{3})\)?[-. ]?)?([0-9]{3})[-. ]?([0-9]{4})$/,
+};
 
 export const AwesomeSauce = (props) => {
     const classes = useStyles();
@@ -69,6 +78,7 @@ export const AwesomeSauce = (props) => {
     const submitForm = () => {
         console.log("submitting")
     }
+    console.log(VALIDATION_REGEX.email.test(user.email), "VALIDATION_REGEX.email.test(user.email)")
     return (
         <>
             <div className={style.home}>
@@ -91,6 +101,10 @@ export const AwesomeSauce = (props) => {
                                         <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.sms}
                                                       onChange={(e) => handleInputChange(e, contact)}
                                                       placeholder={'Enter SMS'}/>
+                                        {console.log(contact.sms, "Sms")}
+                                        {contact.sms && VALIDATION_REGEX.phoneNumber.test(contact.sms) &&
+                                            <p>Must be a valid phone number</p>
+                                        }
 
                                     </Grid>
                                 </Grid>
@@ -105,10 +119,13 @@ export const AwesomeSauce = (props) => {
                         <Grid item xs={12} sm={4}>
                             <p className={'form-label'}>Your Email address:</p>
                         </Grid>
-                        <Grid item xs={12} sm={8}>
+                        <Grid item xs={12} sm={8} className={style.textField}>
+
                             <TextField id={`user-email`}
                                        InputProps={{classes}}
                                        className={style.input}
+                                       error={!VALIDATION_REGEX.email.test(user.email)}
+                                       helperText={user.email && !VALIDATION_REGEX.email.test(user.email) ? 'Enter a valid email address' : ''}
                                        InputLabelProps={{
                                            shrink: false,
                                            floatingLabel: false,
@@ -121,7 +138,7 @@ export const AwesomeSauce = (props) => {
                         <Grid item xs={12} sm={4}>
                             <p className={'form-label'}>Confirm Email address</p>
                         </Grid>
-                        <Grid item xs={12} sm={8}>
+                        <Grid item xs={12} sm={8} className={style.textField}>
                             <TextField id={`user-email-confirm`}
                                        InputProps={{classes}}
                                        className={style.input}
@@ -131,10 +148,12 @@ export const AwesomeSauce = (props) => {
                                        }}
                                        onChange={(e) => handleUserInputChange(e, 'emailConfirm')}
                                        placeholder={'Confirm Email'}
+                                       error={user.emailConfirm !== user.email}
+                                       helperText={user.emailConfirm && user.email && (user.emailConfirm !== user.email) ? 'Your emails do not match' : ''}
                                        value={user.emailConfirm}/>
                         </Grid>
                     </Grid>
-                    <ButtonLink label={'Start streaming'} onClick={submitForm}/>
+                    <ButtonLink label={'Start Streaming'} onClick={submitForm}/>
                     <Grid container spacing={2} className={style.lowerImage}>
                         <div className={style.ads}>
                             <div className={style.bright}/>
