@@ -36,10 +36,13 @@ export const AwesomeSauce = (props) => {
     const {match} = props;
     const {id} = match.params;
     const [user, setUser] = useState({email: '', emailConfirm: '', id: ''});
-    const [contacts, setContacts] = useState([{name: 'test', id: '12312'}, {
-        name: 'test',
+    const [contacts, setContacts] = useState([{
+        name: 'Kate Yoak',
         id: '23432432'
-    }, {name: 'test', id: '2341232'}, {name: 'test', id: '12341234'}, {name: 'test', id: '987234'}]);
+    }, {name: 'Johnny Rich', id: '2341232'}, {name: 'Jeremy Zander', id: '12341234'}, {
+        name: 'Jeff Yoak',
+        id: '987234'
+    }, {name: 'Santa Claus', id: '12312'}]);
     useEffect(() => {
         fetch(
             `http://159.203.169.170/v1/patron/contacts?user_id=${id}`,
@@ -94,16 +97,16 @@ export const AwesomeSauce = (props) => {
                             return (
                                 <Grid container spacing={2} key={contact.id} className={style.contacts}
                                       alignItems={"center"} justify={'center'}>
-                                    <Grid item xs={12} sm={4}>
+                                    <Grid item xs={12} sm={4} className={style.name}>
                                         <p className={'contact-name'}>{contact.name}</p>
                                     </Grid>
                                     <Grid item xs={12} sm={8} className={style.textField}>
                                         <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.sms}
                                                       onChange={(e) => handleInputChange(e, contact)}
-                                                      placeholder={'Enter SMS'}/>
+                                                      placeholder={`Enter SMS for ${contact.name}`}/>
                                         {console.log(contact.sms, "Sms")}
                                         {contact.sms && !VALIDATION_REGEX.phoneNumber.test(contact.sms) &&
-                                            <p>Must be a valid phone number</p>
+                                        <p>Must be a valid phone number</p>
                                         }
 
                                     </Grid>
@@ -136,7 +139,7 @@ export const AwesomeSauce = (props) => {
 
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <p className={'form-label'}>Confirm Email address</p>
+                            <p className={'form-label'}>Confirm Email:</p>
                         </Grid>
                         <Grid item xs={12} sm={8} className={style.textField}>
                             <TextField id={`user-email-confirm`}

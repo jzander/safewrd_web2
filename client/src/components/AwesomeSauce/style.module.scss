@@ -11,7 +11,7 @@
     @include phone {
       margin: 30px auto 0;
     }
-    margin: 10px auto 0;
+    margin: 30px auto;
     display: block;
     border: 1px solid #fff;
     width: 200px;
@@ -192,7 +192,13 @@
     font-size: 14px;
     font-weight: 100;
     color: #fff !important;
-    margin: 3px 0 0;
+    margin: 10px 0 0;
     font-family:Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+.name p {
+  @include phone {
+    margin: 10px auto 0;
   }
 }
