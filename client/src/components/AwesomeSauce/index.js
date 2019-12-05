@@ -97,12 +97,12 @@ export const AwesomeSauce = (props) => {
                                     <Grid item xs={12} sm={4}>
                                         <p className={'contact-name'}>{contact.name}</p>
                                     </Grid>
-                                    <Grid item xs={12} sm={8}>
+                                    <Grid item xs={12} sm={8} className={style.textField}>
                                         <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.sms}
                                                       onChange={(e) => handleInputChange(e, contact)}
                                                       placeholder={'Enter SMS'}/>
                                         {console.log(contact.sms, "Sms")}
-                                        {contact.sms && VALIDATION_REGEX.phoneNumber.test(contact.sms) &&
+                                        {contact.sms && !VALIDATION_REGEX.phoneNumber.test(contact.sms) &&
                                             <p>Must be a valid phone number</p>
                                         }
 
