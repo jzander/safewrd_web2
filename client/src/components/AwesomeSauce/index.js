@@ -66,6 +66,9 @@ export const AwesomeSauce = (props) => {
         console.log(updatedUser, "user");
         setUser(updatedUser)
     };
+    const submitForm = () => {
+        console.log("submitting")
+    }
     return (
         <>
             <div className={style.home}>
@@ -131,7 +134,7 @@ export const AwesomeSauce = (props) => {
                                        value={user.emailConfirm}/>
                         </Grid>
                     </Grid>
-                    <ButtonLink label={'Start streaming'}/>
+                    <ButtonLink label={'Start streaming'} onClick={submitForm}/>
                     <Grid container spacing={2} className={style.lowerImage}>
                         <div className={style.ads}>
                             <div className={style.bright}/>
