@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef, createRef} from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 // Components
 import Header from "../../layout/Header";
 import Footer from "../../components/Footer";
 import style from "./style.module.scss";
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
+
 const useStyles = makeStyles({
     underline: {
         "&&&:before": {
@@ -16,6 +17,16 @@ const useStyles = makeStyles({
         }
     }
 });
+
+function formatPhone(phoneNumberString) {
+    const cleaned = ('' + phoneNumberString).replace(/\D/g, '');
+    const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
+    if (match) {
+        const intlCode = match[1] ? '+1 ' : '';
+        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
+    }
+    return null;
+}
 
 export const AwesomeSauce = (props) => {
     const {match} = props;
@@ -42,17 +53,14 @@ export const AwesomeSauce = (props) => {
     });
 
     const handleInputChange = (e, contact) => {
-        console.log(contact, "contact")
         let updatedContacts = contacts;
         const objIndex = updatedContacts.findIndex((c => {
-            console.log(c, "c");
             if (c && c.id) {
                 return c.id === contact.id
             }
         }));
         updatedContacts[objIndex].sms = e.target.value;
         setContacts(updatedContacts);
-        console.log(contacts, "contacts");
     };
     const classes = useStyles();
     return (
@@ -66,7 +74,7 @@ export const AwesomeSauce = (props) => {
                     <p><b>The name of your SAFETY GROUP is: </b></p>
                     <p><b>The Friends or family members that you added to it are:</b></p>
                     <div className={style.sms}>
-                        {contacts.map((contact) => {
+                        {contacts.map((contact, i) => {
                             return (
                                 <Grid container spacing={2} key={contact.id} className={style.contacts}
                                       alignItems={"center"} justify={'center'}>
@@ -75,9 +83,12 @@ export const AwesomeSauce = (props) => {
                                     </Grid>
                                     <Grid item xs={6} sm={8}>
                                         <TextField id={`contact-${contact.name}`}
-                                                   InputProps={{ classes }}
+                                                   InputProps={{classes}}
                                                    className={style.input}
-                                                   InputLabelProps={{shrink: false, floatingLabel: false}}
+                                                   InputLabelProps={{
+                                                       shrink: false,
+                                                       floatingLabel: false,
+                                                   }}
                                                    onChange={(e) => handleInputChange(e, contact)}
                                                    placeholder={'Enter SMS'}
                                                    value={contact.sms}/>
