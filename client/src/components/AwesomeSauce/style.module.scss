@@ -3,11 +3,30 @@
 .content {
   max-width: 800px;
   margin: 0 auto;
+  @include phone {
+    max-width: 90%;
+  }
+
+  button {
+    @include phone {
+      margin: 30px auto 0;
+    }
+    margin: 10px auto 0;
+    display: block;
+    border: 1px solid #fff;
+    width: 200px;
+    padding: 10px 0;
+    height: auto;
+    border-radius: 5px;
+  }
 
   h1 {
     text-align: left;
     color: #fff;
     font-size: 35px;
+    @include phone {
+      text-align: center;
+    }
   }
 
   h2 {
@@ -16,6 +35,9 @@
     font-style: italic;
     color: #fff;
     font-size: 30px;
+    @include phone {
+      margin: 0 auto;
+    }
   }
 
   p {
@@ -28,10 +50,15 @@
 }
 
 .contacts {
+  max-width: 700px;
+
   p {
     color: #fff;
     font-size: 20px;
     font-weight: bold;
+    @include phone {
+      margin: 0;
+    }
   }
 
   label {
@@ -58,5 +85,103 @@
 }
 
 .sms {
-  max-width: 500px;
+  max-width: 700px;
+}
+
+.ads {
+  position: relative;
+  width: 1200px;
+  height: 341px;
+  background-size: cover;
+  background-position: -5px 32px;
+  background-repeat: no-repeat;
+  background-image: url("../../assets/images/map_bg.png");
+  margin: 120px auto 0;
+  @include tablet {
+    width: 850px;
+    background-size: 151%;
+    background-position: bottom;
+  }
+  @include phone {
+    width: auto;
+    height: 210px;
+    background-position: center;
+    margin: 50px auto;
+  }
+
+  .bright {
+    width: 417px;
+    height: 417px;
+    background-image: url("../../assets/images/oval.png");
+    border-radius: 50%;
+    opacity: 0.42;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+
+    @include phone {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  > img {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 2;
+
+    @include phone {
+      width: 330px;
+    }
+  }
+
+  .playerHenry {
+    position: absolute;
+    left: 471px;
+    top: -61px;
+    z-index: 3;
+
+    @include tablet {
+      left: 301px;
+    }
+    @include phone {
+      display: none;
+    }
+  }
+
+  .playerMom {
+    position: absolute;
+    left: 645px;
+    top: -11px;
+    z-index: 3;
+
+    @include tablet {
+      left: 489px;
+    }
+    @include phone {
+      display: none;
+    }
+  }
+
+  .playerDad {
+    position: absolute;
+    left: 585px;
+    top: 68px;
+    z-index: 3;
+
+    @include tablet {
+      left: 415px;
+    }
+    @include phone {
+      display: none;
+    }
+  }
+}
+
+.lowerImage {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }

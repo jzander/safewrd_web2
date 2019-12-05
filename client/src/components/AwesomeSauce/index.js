@@ -6,6 +6,10 @@ import Header from "../../layout/Header";
 import Footer from "../../components/Footer";
 import style from "./style.module.scss";
 import {makeStyles} from "@material-ui/core/styles";
+import NumberFormat from 'react-number-format';
+import imgPhone from "../../assets/images/phone.png";
+import Player from "../Player";
+import ButtonLink from "../ButtonLink";
 
 const useStyles = makeStyles({
     underline: {
@@ -18,19 +22,11 @@ const useStyles = makeStyles({
     }
 });
 
-function formatPhone(phoneNumberString) {
-    const cleaned = ('' + phoneNumberString).replace(/\D/g, '');
-    const match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/);
-    if (match) {
-        const intlCode = match[1] ? '+1 ' : '';
-        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('');
-    }
-    return null;
-}
-
 export const AwesomeSauce = (props) => {
+    const classes = useStyles();
     const {match} = props;
     const {id} = match.params;
+    const [user, setUser] = useState({email: '', emailConfirm: '', id: ''});
     const [contacts, setContacts] = useState([{name: 'test', id: '12312'}, {
         name: 'test',
         id: '23432432'
@@ -62,7 +58,14 @@ export const AwesomeSauce = (props) => {
         updatedContacts[objIndex].sms = e.target.value;
         setContacts(updatedContacts);
     };
-    const classes = useStyles();
+    const handleUserInputChange = (e, value) => {
+        let updatedUser = {
+            ...user
+        };
+        updatedUser[value] = e.target.value;
+        console.log(updatedUser, "user");
+        setUser(updatedUser)
+    };
     return (
         <>
             <div className={style.home}>
@@ -78,25 +81,72 @@ export const AwesomeSauce = (props) => {
                             return (
                                 <Grid container spacing={2} key={contact.id} className={style.contacts}
                                       alignItems={"center"} justify={'center'}>
-                                    <Grid item xs={6} sm={4}>
+                                    <Grid item xs={12} sm={4}>
                                         <p className={'contact-name'}>{contact.name}</p>
                                     </Grid>
-                                    <Grid item xs={6} sm={8}>
-                                        <TextField id={`contact-${contact.name}`}
-                                                   InputProps={{classes}}
-                                                   className={style.input}
-                                                   InputLabelProps={{
-                                                       shrink: false,
-                                                       floatingLabel: false,
-                                                   }}
-                                                   onChange={(e) => handleInputChange(e, contact)}
-                                                   placeholder={'Enter SMS'}
-                                                   value={contact.sms}/>
+                                    <Grid item xs={12} sm={8}>
+                                        <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.sms}
+                                                      onChange={(e) => handleInputChange(e, contact)}
+                                                      placeholder={'Enter SMS'}/>
+
                                     </Grid>
                                 </Grid>
                             )
                         })}
                     </div>
+                    <p><b>Finally, provide their mobile number in the fields above. Please be sure to include their
+                        10-digit Area Code+mobile Number; and we'll let them know that you added them to your SAFETY
+                        GROUP.</b></p>
+                    <Grid container spacing={2} className={style.contacts}
+                          alignItems={"center"} justify={'center'}>
+                        <Grid item xs={12} sm={4}>
+                            <p className={'form-label'}>Your Email address:</p>
+                        </Grid>
+                        <Grid item xs={12} sm={8}>
+                            <TextField id={`user-email`}
+                                       InputProps={{classes}}
+                                       className={style.input}
+                                       InputLabelProps={{
+                                           shrink: false,
+                                           floatingLabel: false,
+                                       }}
+                                       onChange={(e) => handleUserInputChange(e, 'email')}
+                                       placeholder={'Enter Email'}
+                                       value={user.email}/>
+
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <p className={'form-label'}>Confirm Email address</p>
+                        </Grid>
+                        <Grid item xs={12} sm={8}>
+                            <TextField id={`user-email-confirm`}
+                                       InputProps={{classes}}
+                                       className={style.input}
+                                       InputLabelProps={{
+                                           shrink: false,
+                                           floatingLabel: false,
+                                       }}
+                                       onChange={(e) => handleUserInputChange(e, 'emailConfirm')}
+                                       placeholder={'Confirm Email'}
+                                       value={user.emailConfirm}/>
+                        </Grid>
+                    </Grid>
+                    <ButtonLink label={'Start streaming'}/>
+                    <Grid container spacing={2} className={style.lowerImage}>
+                        <div className={style.ads}>
+                            <div className={style.bright}/>
+                            <img src={imgPhone} alt="phone"/>
+                            <div className={style.playerHenry}>
+                                <Player title="Henry"/>
+                            </div>
+                            <div className={style.playerMom}>
+                                <Player title="Mom" delay={2}/>
+                            </div>
+                            <div className={style.playerDad}>
+                                <Player title="Dad" delay={1}/>
+                            </div>
+                        </div>
+                    </Grid>
                 </div>
                 <Footer/>
             </div>

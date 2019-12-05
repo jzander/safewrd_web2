@@ -9,6 +9,7 @@
     "formstack-web-api-node": "^0.1.0",
     "multiparty": "^4.2.1",
     "now": "^16.5.2",
+    "react-number-format": "^4.3.1",
     "urlencoded-body-parser": "^3.0.0"
   },
   "devDependencies": {
