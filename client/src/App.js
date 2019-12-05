@@ -12,6 +12,7 @@ import Patron from "./pages/Patron"
 import PatronThankYou from "./pages/Patron"
 
 import FinishLine from "./pages/FinishLine"
+import {AwesomeSauce} from "./components/AwesomeSauce";
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
-          <Route exact path="/finishline" component={FinishLine} />
+          <Route exact path="/finishline/:id" component={AwesomeSauce} />
           <Route exact path="/contact" component={Contact} />
         </div>
       </Router>
@@ -38,6 +39,7 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/vip" component={Form} />
+          <Route exact path="/finishline/:id" component={AwesomeSauce} />
         </div>
       </Router>
     );

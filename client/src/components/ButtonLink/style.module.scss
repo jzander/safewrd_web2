@@ -3,7 +3,7 @@
 .buttonWrapper {
   z-index: 1000;
   position: relative;
-  
+
   button {
     height: 48px;
     padding: 0px 29px;
@@ -13,7 +13,7 @@
     font-weight: 400;
     border: none;
     background: none;
-    
+
 
     @include phone {
       font-size: 13px;

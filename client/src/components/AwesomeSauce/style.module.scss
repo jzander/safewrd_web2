@@ -1,0 +1,62 @@
+@import "../../assets/scss/base.scss";
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1 {
+    text-align: left;
+    color: #fff;
+    font-size: 35px;
+  }
+
+  h2 {
+    font-weight: lighter;
+    text-align: center;
+    font-style: italic;
+    color: #fff;
+    font-size: 30px;
+  }
+
+  p {
+    b {
+      color: #fff;
+      opacity: .5;
+      font-size: 20px;
+    }
+  }
+}
+
+.contacts {
+  p {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  label {
+    color: #000;
+    z-index: 1000;
+  }
+
+  input {
+    width: 100%;
+    background: #fff;
+    border-radius: 5px;
+    padding: 0 5px;
+    height: 40px;
+    border-bottom: none;
+
+    &:focus {
+      border-bottom: none;
+    }
+  }
+}
+
+.input {
+  width: 100%;
+}
+
+.sms {
+  max-width: 500px;
+}
