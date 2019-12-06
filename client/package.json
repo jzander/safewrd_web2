@@ -9,6 +9,7 @@
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
+    "react-toastify": "^5.4.1",
     "react-webcam": "^4.0.0"
   },
   "scripts": {
