@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef, createRef} from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import {ToastContainer, toast} from 'react-toastify';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,6 +14,9 @@ import NumberFormat from 'react-number-format';
 import imgPhone from "../../assets/images/phone.png";
 import Player from "../Player";
 import ButtonLink from "../ButtonLink";
+import './config.scss'
+// import { Redirect } from 'react-router-dom'
+import {Redirect} from 'react-router';
 
 const useStyles = makeStyles({
     underline: {
@@ -36,13 +40,9 @@ export const AwesomeSauce = (props) => {
     const {match} = props;
     const {id} = match.params;
     const [user, setUser] = useState({email: '', emailConfirm: '', id: ''});
-    const [contacts, setContacts] = useState([{
-        name: 'Kate Yoak',
-        id: '23432432'
-    }, {name: 'Johnny Rich', id: '2341232'}, {name: 'Jeremy Zander', id: '12341234'}, {
-        name: 'Jeff Yoak',
-        id: '987234'
-    }, {name: 'Santa Claus', id: '12312'}]);
+    const [contacts, setContacts] = useState([]);
+    const [groupInfo, setGroupInfo] = useState('');
+
     useEffect(() => {
         fetch(
             `http://159.203.169.170/v1/patron/contacts?user_id=${id}`,
@@ -55,10 +55,16 @@ export const AwesomeSauce = (props) => {
         )
             .then(res => res.json())
             .then(response => {
-                setContacts(response['Contacts'])
+                console.log(response, "response");
+                setContacts(response['Contacts']);
+                setGroupInfo(response['Group']);
+                setUser({
+                    ...user,
+                    ...response['User']
+                })
             })
             .catch(error => console.log(error));
-    });
+    }, []);
 
     const handleInputChange = (e, contact) => {
         let updatedContacts = contacts;
@@ -67,7 +73,7 @@ export const AwesomeSauce = (props) => {
                 return c.id === contact.id
             }
         }));
-        updatedContacts[objIndex].sms = e.target.value;
+        updatedContacts[objIndex].phone = e.target.value;
         setContacts(updatedContacts);
     };
     const handleUserInputChange = (e, value) => {
@@ -75,22 +81,58 @@ export const AwesomeSauce = (props) => {
             ...user
         };
         updatedUser[value] = e.target.value;
-        console.log(updatedUser, "user");
         setUser(updatedUser)
     };
+    const validateForm = () => {
+        const validEmails = VALIDATION_REGEX.email.test(user.email);
+        const validPhones = contacts.every((contact) => {
+            return VALIDATION_REGEX.phoneNumber.test(contact.phone);
+        });
+        const emailsMatching = user.emailConfirm === user.email;
+        return validEmails && validPhones && emailsMatching;
+    };
+    const redirectOnSuccess = () => {
+        props.history.push('/video-test');
+    };
     const submitForm = () => {
-        console.log("submitting")
-    }
-    console.log(VALIDATION_REGEX.email.test(user.email), "VALIDATION_REGEX.email.test(user.email)")
+        const isFormValid = validateForm();
+        if (isFormValid) {
+            const data = {
+                "User": {
+                    user_id: id,
+                    email: user.email,
+                },
+                "Contacts": contacts
+            };
+            fetch('http://159.203.169.170/v1/patron/contacts', {
+                method: 'POST',
+                body: JSON.stringify(data)
+            }).then(res => res.json())
+                .then(response => {
+                    console.log(response, "response");
+                    redirectOnSuccess()
+                    // if (response["Success"] === 'partial'){
+                    //     toast.error("Something went wrong, please try again.", {
+                    //         position: toast.POSITION.TOP_CENTER
+                    //     });
+                    // }
+                });
+        } else {
+            toast.error("Please make sure your phone numbers and emails are valid", {
+                position: toast.POSITION.TOP_CENTER
+            });
+        }
+    };
     return (
         <>
+            <ToastContainer/>
             <div className={style.home}>
                 <Header/>
                 <div className={`${style.content} awesome-sauce-container`}>
                     <h2>#Stream4Help</h2>
                     <h1>Awesome Sauce!</h1>
-                    <p><b>Your SAFEWRD is: </b></p>
-                    <p><b>The name of your SAFETY GROUP is: </b></p>
+                    <p><b>Your SAFEWRD is: {groupInfo.safeword}</b></p>
+                    <p><b>The name of your SAFETY GROUP is: {groupInfo.name}</b></p>
                     <p><b>The Friends or family members that you added to it are:</b></p>
                     <div className={style.sms}>
                         {contacts.map((contact, i) => {
@@ -101,11 +143,10 @@ export const AwesomeSauce = (props) => {
                                         <p className={'contact-name'}>{contact.name}</p>
                                     </Grid>
                                     <Grid item xs={12} sm={8} className={style.textField}>
-                                        <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.sms}
+                                        <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.phone}
                                                       onChange={(e) => handleInputChange(e, contact)}
                                                       placeholder={`Enter SMS for ${contact.name}`}/>
-                                        {console.log(contact.sms, "Sms")}
-                                        {contact.sms && !VALIDATION_REGEX.phoneNumber.test(contact.sms) &&
+                                        {contact.phone && !VALIDATION_REGEX.phoneNumber.test(contact.phone) &&
                                         <p>Must be a valid phone number</p>
                                         }
 
@@ -156,7 +197,7 @@ export const AwesomeSauce = (props) => {
                                        value={user.emailConfirm}/>
                         </Grid>
                     </Grid>
-                    <ButtonLink label={'Start Streaming'} onClick={submitForm}/>
+                    <ButtonLink label={'Start 30-sec Video Test with Friends'} onClick={submitForm}/>
                     <Grid container spacing={2} className={style.lowerImage}>
                         <div className={style.ads}>
                             <div className={style.bright}/>

@@ -12,7 +12,7 @@ import Header from "../../layout/Header";
 import Footer from "../../components/Footer";
 
 // TODO: Move to config
-const FORM_URL = 'https://api.tranzmt.it/v1/ambassador/lead';
+const FORM_URL = 'http://159.203.169.170/v1/ambassador/lead';
 
 const Input = (props) => {
   return <input {...props} onChange={e => props.onValue(e.target.value)} />;
@@ -31,7 +31,7 @@ function toQueryString(data) {
   return '?' + Object.keys(data).map(key => `${key}=${data[key]}`).join('&');
 }
 
-export default () => {
+export default (props) => {
 
   const [loading, setLoading] = useState(false);
   const [nickname, setNickname] = useState('');
@@ -98,11 +98,11 @@ export default () => {
         //setLoading(false);
         return;
       } else {
-        alert("Thank you! We have sent an SMS message to " + resp.Lead.handle );
+        // alert("Thank you! We have sent an SMS message to " + resp.Lead.handle );
         console.log("Sending over to the thankyou page");
         //return <Redirect to="/PatronThankYou?phone=resp.Lead.phone" />;
 
-        window.location.href='/patronthankyou';
+        props.history.push('/patronthankyou');
       }
 
       // TODO: Re-enable

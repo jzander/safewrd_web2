@@ -9,10 +9,11 @@ import Form from "./pages/Form";
 import ThankYou from "./pages/ThankYou";
 
 import Patron from "./pages/Patron"
-import PatronThankYou from "./pages/Patron"
+import PatronThankYou from "./pages/PatronThankYou"
 
 import FinishLine from "./pages/FinishLine"
 import {AwesomeSauce} from "./components/AwesomeSauce";
+import {VideoTest} from "./pages/VideoTest";
 
 function App() {
 
@@ -27,10 +28,10 @@ function App() {
           <Route exact path="/patronthankyou" component={PatronThankYou} />
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/video-test" component={VideoTest} />
         </div>
       </Router>
     );
-
   } else {
     return (
       <Router>
@@ -40,6 +41,9 @@ function App() {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/vip" component={Form} />
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
+          <Route exact path="/video-test" component={VideoTest} />
+          <Route exact path="/patron" component={Patron} />
+          <Route exact path="/patronthankyou" component={PatronThankYou} />
         </div>
       </Router>
     );
