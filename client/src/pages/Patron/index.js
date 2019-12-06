@@ -12,7 +12,7 @@ import Header from "../../layout/Header";
 import Footer from "../../components/Footer";
 
 // TODO: Move to config
-const FORM_URL = 'http://159.203.169.170/v1/ambassador/lead';
+const FORM_URL = 'https://api.tranzmt.it/v1/ambassador/lead';
 
 const Input = (props) => {
   return <input {...props} onChange={e => props.onValue(e.target.value)} />;

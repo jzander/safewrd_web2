@@ -45,7 +45,7 @@ export const AwesomeSauce = (props) => {
 
     useEffect(() => {
         fetch(
-            `http://159.203.169.170/v1/patron/contacts?user_id=${id}`,
+            `https://api.tranzmt.it/v1/patron/contacts?user_id=${id}`,
             {
                 method: "GET",
                 headers: new Headers({
@@ -104,7 +104,7 @@ export const AwesomeSauce = (props) => {
                 },
                 "Contacts": contacts
             };
-            fetch('http://159.203.169.170/v1/patron/contacts', {
+            fetch('https://api.tranzmt.it/v1/patron/contacts', {
                 method: 'POST',
                 body: JSON.stringify(data)
             }).then(res => res.json())
