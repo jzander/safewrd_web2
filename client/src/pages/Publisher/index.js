@@ -66,7 +66,7 @@ export const Publisher = (props) => {
         if (isActive) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds + 1);
-            }, 1000);
+            }, 30000);
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
         }
