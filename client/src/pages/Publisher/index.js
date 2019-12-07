@@ -118,7 +118,7 @@ export const Publisher = (props) => {
             },
         };
         fetch('https://api.tranzmt.it/v1/patron/event', {
-        // fetch('http://159.203.169.170/v1/patron/event', {
+            // fetch('http://159.203.169.170/v1/patron/event', {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(res => res.json())
@@ -195,10 +195,12 @@ export const Publisher = (props) => {
                 />
                 }
             </div>
+            {testURL &&
             <a href={testURL} style={{
                 color: '#fff', textAlign: 'center', display: 'block',
                 margin: '30px'
             }}>View Link</a>
+            }
         </div>
     );
 };
