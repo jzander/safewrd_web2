@@ -29,8 +29,8 @@ export const Subscriber = (props) => {
             .then(response => {
                 setSession(response['Session_id']);
                 setLocation({
-                    latitude: response['Location'].lat,
-                    longitude: response['Location'].lng
+                    latitude: parseFloat(response['Location'].lat),
+                    longitude: parseFloat(response['Location'].lng)
                 });
                 setApikey(response['Api_key']);
                 setName(response['Name']);
