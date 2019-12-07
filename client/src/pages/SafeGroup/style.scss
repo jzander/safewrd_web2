@@ -2,11 +2,17 @@
 
 .OT_publisher, .OT_subscriber {
   position: relative;
-  min-width: 500px;
-  min-height: 500px;
-  width: 100%;
-  margin: 50px auto;
+  min-height: 700px;
+  width: 95%;
+  min-width: 479px;
+  max-width: 479px;
+  margin: 20px auto 10px;
+  border-radius:20px;
+  @media (max-width: 479px){
+    min-width: 95%;
+  }
 }
+
 
 #sessionStatus {
   color: #fff;
@@ -23,3 +29,4 @@
   margin: 0 auto;
   display: block;
 }
+

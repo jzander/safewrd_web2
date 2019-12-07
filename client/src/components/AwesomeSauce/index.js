@@ -62,11 +62,11 @@ export const AwesomeSauce = (props) => {
                 setUser({
                     ...user,
                     ...response['User']
-                })
+                });
                 setPageLoaded(true)
             })
             .catch(error => {
-                setPageLoaded(true)
+                setPageLoaded(true);
                 console.log(error)
             });
 
@@ -98,8 +98,9 @@ export const AwesomeSauce = (props) => {
         return validEmails && validPhones && emailsMatching;
     };
     const redirectOnSuccess = () => {
-        props.history.push('/video-stream');
+        props.history.push(`/video-stream/${id}`);
     };
+
     const submitForm = () => {
         const isFormValid = validateForm();
         if (isFormValid) {

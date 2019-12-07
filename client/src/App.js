@@ -15,8 +15,8 @@ import FinishLine from "./pages/FinishLine"
 import {AwesomeSauce} from "./components/AwesomeSauce";
 import {VideoTest} from "./pages/VideoTest";
 import {VideoTestTwo} from "./pages/VideoTestTwo";
-import {VideoTestThree} from "./pages/VideoTestThree";
-import {VideoTestFour} from "./pages/VideoTestFour";
+import {VideoStream} from "./pages/VideoStream";
+import {SafeGroup} from "./pages/SafeGroup";
 
 function App() {
 
@@ -31,10 +31,10 @@ function App() {
           <Route exact path="/patronthankyou" component={PatronThankYou} />
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/video-test" component={VideoTest} />
-          <Route exact path="/video-test-two" component={VideoTestTwo} />
-          <Route exact path="/video-stream" component={VideoTestThree} />
-          <Route exact path="/safe-group/:id/:session" component={VideoTestFour} />
+          {/*<Route exact path="/video-test" component={VideoTest} />*/}
+          {/*<Route exact path="/video-test-two" component={VideoTestTwo} />*/}
+          <Route exact path="/video-stream/:id" component={VideoStream} />
+          <Route exact path="/safe-group/:id/:token" component={SafeGroup} />
         </div>
       </Router>
     );
@@ -47,12 +47,12 @@ function App() {
           <Route exact path="/thankyou" component={ThankYou} />
           <Route exact path="/vip" component={Form} />
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
-          <Route exact path="/video-test" component={VideoTest} />
-          <Route exact path="/video-test-two" component={VideoTestTwo} />
+          {/*<Route exact path="/video-test" component={VideoTest} />*/}
+          {/*<Route exact path="/video-test-two" component={VideoTestTwo} />*/}
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
-          <Route exact path="/video-stream" component={VideoTestThree} />
-          <Route exact path="/safe-group/:id/:session" component={VideoTestFour} />
+          <Route exact path="/video-stream/:id" component={VideoStream} />
+          <Route exact path="/safe-group/:id/:token" component={SafeGroup} />
         </div>
       </Router>
     );
