@@ -123,6 +123,14 @@ export const AwesomeSauce = (props) => {
             });
         }
     };
+    if (contacts.length < 1) {
+        return (<>
+            <div className={style.home}>
+                <Header/>
+                <h1 style={{color: '#fff', textAlign: 'center', margin: '100px auto 0'}}>Not Found.<br/>Please Try again Later</h1>
+            </div>
+        </>)
+    }
     return (
         <>
             <ToastContainer/>
@@ -131,8 +139,8 @@ export const AwesomeSauce = (props) => {
                 <div className={`${style.content} awesome-sauce-container`}>
                     <h2>#Stream4Help</h2>
                     <h1>Awesome Sauce!</h1>
-                    <p><b>Your SAFEWRD is: {groupInfo.safeword}</b></p>
-                    <p><b>The name of your SAFETY GROUP is: {groupInfo.name}</b></p>
+                    <p><b>Your SAFEWRD is: {groupInfo && groupInfo.safeword ? groupInfo.safeword : ''}</b></p>
+                    <p><b>The name of your SAFETY GROUP is: {groupInfo && groupInfo.name ? groupInfo.name : ''}</b></p>
                     <p><b>The Friends or family members that you added to it are:</b></p>
                     <div className={style.sms}>
                         {contacts.map((contact, i) => {
