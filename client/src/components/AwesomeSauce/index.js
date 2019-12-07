@@ -39,6 +39,7 @@ export const AwesomeSauce = (props) => {
     const classes = useStyles();
     const {match} = props;
     const {id} = match.params;
+    const [pageLoaded, setPageLoaded] = useState(false);
     const [user, setUser] = useState({email: '', emailConfirm: '', id: ''});
     const [contacts, setContacts] = useState([]);
     const [groupInfo, setGroupInfo] = useState('');
@@ -62,8 +63,13 @@ export const AwesomeSauce = (props) => {
                     ...user,
                     ...response['User']
                 })
+                setPageLoaded(true)
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                setPageLoaded(true)
+                console.log(error)
+            });
+
     }, []);
 
     const handleInputChange = (e, contact) => {
@@ -123,7 +129,7 @@ export const AwesomeSauce = (props) => {
             });
         }
     };
-    if (contacts.length < 1) {
+    if (pageLoaded && contacts.length < 1) {
         return (<>
             <div className={style.home}>
                 <Header/>
