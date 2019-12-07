@@ -15,8 +15,8 @@ import FinishLine from "./pages/FinishLine"
 import {AwesomeSauce} from "./components/AwesomeSauce";
 import {VideoTest} from "./pages/VideoTest";
 import {VideoTestTwo} from "./pages/VideoTestTwo";
-import {VideoStream} from "./pages/VideoStream";
-import {SafeGroup} from "./pages/SafeGroup";
+import {Publisher, VideoStream} from "./pages/Publisher";
+import {SafeGroup, Subscriber} from "./pages/Subscriber";
 
 function App() {
 
@@ -33,8 +33,8 @@ function App() {
           <Route exact path="/contact" component={Contact} />
           {/*<Route exact path="/video-test" component={VideoTest} />*/}
           {/*<Route exact path="/video-test-two" component={VideoTestTwo} />*/}
-          <Route exact path="/video-stream/:id" component={VideoStream} />
-          <Route exact path="/safe-group/:id/:token" component={SafeGroup} />
+          <Route exact path="/publisher/:id" component={Publisher} />
+          <Route exact path="/subscriber/:id/:token" component={Subscriber} />
         </div>
       </Router>
     );
@@ -51,8 +51,8 @@ function App() {
           {/*<Route exact path="/video-test-two" component={VideoTestTwo} />*/}
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
-          <Route exact path="/video-stream/:id" component={VideoStream} />
-          <Route exact path="/safe-group/:id/:token" component={SafeGroup} />
+          <Route exact path="/publisher/:id" component={Publisher} />
+          <Route exact path="/subscriber/:id/:token" component={Subscriber} />
         </div>
       </Router>
     );

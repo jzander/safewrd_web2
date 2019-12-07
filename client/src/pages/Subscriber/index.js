@@ -1,9 +1,9 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {OTSession, OTPublisher, OTStreams, OTSubscriber} from 'opentok-react';
 import "./style.scss";
-import {UserLocation} from "../VideoStream";
+import {UserLocation} from "../Publisher";
 
-export const SafeGroup = (props) => {
+export const Subscriber = (props) => {
     const {match} = props;
     const {id, token} = match.params;
     const [error, setError] = useState(null);
@@ -16,6 +16,7 @@ export const SafeGroup = (props) => {
 
     useEffect(() => {
         fetch(
+            // `http://159.203.169.170/v1/patron/event?id=${id}`,
             `https://api.tranzmt.it/v1/patron/event?id=${id}`,
             {
                 method: "GET",
@@ -101,22 +102,24 @@ export const SafeGroup = (props) => {
                     <strong>Error:</strong> {error}
                 </div>
             ) : null}
-            <OTSession
-                apiKey={apiKey}
-                sessionId={session}
-                token={token}
-                onError={onSessionError}
-                eventHandlers={sessionEventHandlers}
-            >
-                <OTStreams>
-                    <OTSubscriber
-                        properties={{width: 100, height: 100}}
-                        onSubscribe={onSubscribe}
-                        onError={onSubscribeError}
-                        eventHandlers={subscriberEventHandlers}
-                    />
-                </OTStreams>
-            </OTSession>
+            <div className={'session-wrapper'}>
+                <OTSession
+                    apiKey={apiKey}
+                    sessionId={session}
+                    token={token}
+                    onError={onSessionError}
+                    eventHandlers={sessionEventHandlers}
+                >
+                    <OTStreams>
+                        <OTSubscriber
+                            properties={{width: 100, height: 100}}
+                            onSubscribe={onSubscribe}
+                            onError={onSubscribeError}
+                            eventHandlers={subscriberEventHandlers}
+                        />
+                    </OTStreams>
+                </OTSession>
+            </div>
 
             <div className={'map-container'}>
                 <UserLocation userCoords={userCoords}

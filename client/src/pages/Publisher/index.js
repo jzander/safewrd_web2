@@ -5,6 +5,20 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
 import "./style.scss";
 import {toast} from "react-toastify";
 
+
+export const sec2time = (timeInSeconds) => {
+    const pad = function (num, size) {
+            return ('000' + num).slice(size * -1);
+        },
+        time = parseFloat(timeInSeconds).toFixed(3),
+        hours = Math.floor(time / 60 / 60),
+        minutes = Math.floor(time / 60) % 60,
+        seconds = Math.floor(time - minutes * 60),
+        milliseconds = time.slice(-3);
+
+    return pad(minutes, 2) + ':' + pad(seconds, 2);
+};
+
 export const UserLocation = compose(
     withProps({
         googleMapURL: `https://maps.googleapis.com/maps/api/js?key=AIzaSyDqrR39a8IilthyBcBjfdWdxaWYwufrDkg`,
@@ -17,13 +31,14 @@ export const UserLocation = compose(
 )((props) => {
     const {userCoords} = props;
     return (
-        <GoogleMap defaultZoom={12} defaultCenter={{lat: userCoords.latitude, lng: userCoords.longitude}}>
+        <GoogleMap defaultZoom={12} defaultCenter={{lat: userCoords.latitude, lng: userCoords.longitude}}
+                   options={{mapTypeControl: false, streetViewControl: false}}>
             <Marker position={{lat: userCoords.latitude, lng: userCoords.longitude}}/>
         </GoogleMap>
     );
 });
 
-export const VideoStream = (props) => {
+export const Publisher = (props) => {
     const {match} = props;
     const {id} = match.params;
     const [error, setError] = useState(null);
@@ -33,8 +48,36 @@ export const VideoStream = (props) => {
     const [session, setSession] = useState('');
     const [token, setToken] = useState('');
     const [apiKey, setApikey] = useState('');
+    const [testURL, setTestURL] = useState('');
+    const [seconds, setSeconds] = useState(0);
+    const [isActive, setIsActive] = useState(false);
+
+    function toggle() {
+        setIsActive(!isActive);
+    }
+
+    function reset() {
+        setSeconds(0);
+        setIsActive(false);
+    }
+
+    useEffect(() => {
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setSeconds(seconds => seconds + 1);
+            }, 1000);
+        } else if (!isActive && seconds !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [isActive, seconds]);
+
     const sessionEventHandlers = {
-        sessionConnected: () => setConnection('Connected'),
+        sessionConnected: () => {
+            toggle();
+            setConnection('Connected')
+        },
         sessionDisconnected: () => setConnection('Disconnected'),
         sessionReconnected: () => setConnection('Reconnected'),
         sessionReconnecting: () => setConnection('Reconnecting'),
@@ -59,10 +102,12 @@ export const VideoStream = (props) => {
 
     const onSubscribeError = error => setError(error);
 
-    const toggleVideo = () => setVideoPublish(!publishVideo);
+    const toggleVideo = () => {
+        toggle();
+        setVideoPublish(!publishVideo);
+    }
 
     const onSessionError = error => setError(error);
-
 
     const showMap = (coords) => {
         const data = {
@@ -73,6 +118,7 @@ export const VideoStream = (props) => {
             },
         };
         fetch('https://api.tranzmt.it/v1/patron/event', {
+        // fetch('http://159.203.169.170/v1/patron/event', {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(res => res.json())
@@ -80,6 +126,7 @@ export const VideoStream = (props) => {
                 setSession(response['Session_id']);
                 setToken(response['Token']);
                 setApikey(response['Api_key']);
+                setTestURL(response['TestURL']);
             });
         setUserLocation(coords)
     };
@@ -89,6 +136,8 @@ export const VideoStream = (props) => {
             showMap(position.coords);
         });
     }, []);
+
+
     if (!apiKey) {
         return (<></>)
     }
@@ -100,6 +149,21 @@ export const VideoStream = (props) => {
                     <strong>Error:</strong> {error}
                 </div>
             ) : null}
+            <div><p style={{
+                textAlign: 'center', background: '#fff',
+                color: '#395ee5',
+                maxWidth: '479px',
+                margin: '0 auto 10px',
+                height: '40px',
+                lineHeight: '40px',
+                borderRadius: '10px'
+            }}><span style={{
+                color: '#b00',
+                fontSize: '25px',
+                lineHeight: '0',
+                position: 'relative',
+                top: '4px',
+            }}>&#9673;</span>&nbsp;&nbsp;<b>Emergency Call: {sec2time(seconds)}</b></p></div>
             <div className={'stream-wrapper'}>
                 <OTSession
                     apiKey={apiKey}
@@ -131,6 +195,10 @@ export const VideoStream = (props) => {
                 />
                 }
             </div>
+            <a href={testURL} style={{
+                color: '#fff', textAlign: 'center', display: 'block',
+                margin: '30px'
+            }}>View Link</a>
         </div>
     );
 };
