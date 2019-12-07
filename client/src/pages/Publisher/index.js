@@ -196,7 +196,7 @@ export const Publisher = (props) => {
                 }
             </div>
             {testURL &&
-            <a href={testURL} style={{
+            <a href={testURL} target="_blank" style={{
                 color: '#fff', textAlign: 'center', display: 'block',
                 margin: '30px'
             }}>View Link</a>
