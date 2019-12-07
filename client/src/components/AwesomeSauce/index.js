@@ -146,8 +146,8 @@ export const AwesomeSauce = (props) => {
                 <div className={`${style.content} awesome-sauce-container`}>
                     <h2>#Stream4Help</h2>
                     <h1>Awesome Sauce!</h1>
-                    <p><b>Your SAFEWRD is: {groupInfo && groupInfo.safeword ? groupInfo.safeword : ''}</b></p>
-                    <p><b>The name of your SAFETY GROUP is: {groupInfo && groupInfo.name ? groupInfo.name : ''}</b></p>
+                    <p><b>Your SAFEWRD is: </b><span>{groupInfo && groupInfo.safeword ? groupInfo.safeword : ''}</span></p>
+                    <p><b>The name of your SAFETY GROUP is: </b><span>{groupInfo && groupInfo.name ? groupInfo.name : ''}</span></p>
                     <p><b>The Friends or family members that you added to it are:</b></p>
                     <div className={style.sms}>
                         {contacts.map((contact, i) => {
