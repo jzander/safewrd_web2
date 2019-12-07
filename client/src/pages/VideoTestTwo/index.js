@@ -37,21 +37,19 @@ export const VideoTestTwo = () => {
                     return (
                         <div>
                             <p>{status}</p>
-                            <button onClick={startRecording}>Start Recording</button>
-                            <button onClick={stopRecording}>Stop Recording</button>
-                            <VideoPreview stream={previewStream}/>
-                            {mediaBlobUrl &&
-                            <video src={mediaBlobUrl} autoPlay loop controls/>
+                            {seconds > 0 &&
+                            <p><span>&#9673;</span>&nbsp;Streaming for {seconds}s</p>
+                            }
+                            <ButtonLink label={status === 'recording' ? 'Stop Streaming' : 'Start 30-sec Video Test with Friends'} onClick={status === 'recording' ? stopRecording : startRecording}/>
+                            {mediaBlobUrl ?
+                                <video src={mediaBlobUrl} autoPlay loop controls/> :
+                                <VideoPreview stream={previewStream}/>
                             }
                         </div>
                     )
                 }}
             />
-            {/*{seconds > 0 &&*/}
-            {/*<p><span>&#9673;</span>&nbsp;Streaming for {seconds}s</p>*/}
-            {/*}*/}
             {/*<Webcam/>*/}
-            {/*<ButtonLink label={isActive ? 'Stop Streaming' : 'Start 30-sec Video Test with Friends'} onClick={toggleStreaming}/>*/}
         </div>
     );
 };
