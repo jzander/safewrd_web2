@@ -14,6 +14,7 @@ import PatronThankYou from "./pages/PatronThankYou"
 import FinishLine from "./pages/FinishLine"
 import {AwesomeSauce} from "./components/AwesomeSauce";
 import {VideoTest} from "./pages/VideoTest";
+import {VideoTestTwo} from "./pages/VideoTestTwo";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/video-test" component={VideoTest} />
+          <Route exact path="/video-test-two" component={VideoTestTwo} />
         </div>
       </Router>
     );
@@ -42,6 +44,7 @@ function App() {
           <Route exact path="/vip" component={Form} />
           <Route exact path="/finishline/:id" component={AwesomeSauce} />
           <Route exact path="/video-test" component={VideoTest} />
+          <Route exact path="/video-test-two" component={VideoTestTwo} />
           <Route exact path="/patron" component={Patron} />
           <Route exact path="/patronthankyou" component={PatronThankYou} />
         </div>
