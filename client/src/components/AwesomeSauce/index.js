@@ -158,13 +158,12 @@ export const AwesomeSauce = (props) => {
                                         <p className={'contact-name'}>{contact.name}</p>
                                     </Grid>
                                     <Grid item xs={12} sm={8} className={style.textField}>
-                                        <NumberFormat format="(###) ###-####" mask="_" value={contact.phone}
+                                        <NumberFormat format="+1 (###) ###-####" mask="_" value={contact.phone}
                                                       onChange={(e) => handleInputChange(e, contact)}
                                                       placeholder={`Enter SMS for ${contact.name}`}/>
                                         {contact.phone && !VALIDATION_REGEX.phoneNumber.test(contact.phone) &&
                                         <p>Must be a valid phone number</p>
                                         }
-
                                     </Grid>
                                 </Grid>
                             )

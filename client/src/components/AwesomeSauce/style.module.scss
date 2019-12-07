@@ -14,7 +14,8 @@
     margin: 30px auto;
     display: block;
     border: 1px solid #fff;
-    width: 200px;
+    max-width: 400px;
+    width: 100%;
     padding: 10px 0;
     height: auto;
     border-radius: 5px;
@@ -75,6 +76,7 @@
     font-size: 14px;
     box-shadow: none;
     border: none;
+
     &:focus {
       border-bottom: none;
     }
@@ -188,12 +190,16 @@
 }
 
 .textField {
+  > div {
+    width: 100%;
+  }
+
   p {
     font-size: 14px;
     font-weight: 100;
     color: #fff !important;
     margin: 10px 0 0;
-    font-family:Roboto, Helvetica, Arial, sans-serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
   }
 }
 
