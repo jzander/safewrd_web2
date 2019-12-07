@@ -55,10 +55,12 @@ export const Publisher = (props, interval1 = setInterval(() => {
         const [seconds, setSeconds] = useState(0);
 
         useEffect(() => {
-            const timeout = setTimeout(() => {
-                setSeconds(seconds + 1);
-            }, 1000);
-
+            let timeout;
+            if (seconds < 30){
+                timeout = setTimeout(() => {
+                    setSeconds(seconds + 1);
+                }, 1000);
+            }
             return () => {
                 clearTimeout(timeout);
             };
