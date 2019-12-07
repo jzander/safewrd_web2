@@ -10,6 +10,15 @@ export const VideoTestFour = (props) => {
     const [publishVideo, setVideoPublish] = useState(false);
     const [user, setUser] = useState({});
 
+    const showMap = (coords) => {
+        console.log(coords, "position.coords")
+    };
+
+    window.navigator.geolocation.getCurrentPosition((position) => {
+        showMap(position.coords);
+    });
+
+
     useEffect(() => {
         fetch(
             `https://api.tranzmt.it/v1/patron/contacts?user_id=${id}`,
@@ -85,7 +94,7 @@ export const VideoTestFour = (props) => {
 
     const apiKey = '46473562';
     const sessionId = session;
-    const token = 'T1==cGFydG5lcl9pZD00NjQ3MzU2MiZzaWc9MzU5ZGJhZTc1MTYyZDA5ZTIwNzg0YmVlOTUxMWIzOWM2MzI3MzQxZDpzZXNzaW9uX2lkPTFfTVg0ME5qUTNNelUyTW41LU1UVTNOVFk0T1Rjek9UVXhPWDVWT0RocE4yY3hPSGxtYkVWUFdYTTBlVkJHWlVoVWEzVi1mZyZjcmVhdGVfdGltZT0xNTc1Njg5OTA0Jm5vbmNlPTAuOTQ5MjU3NTUzMTkzMDc3NCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTc1NjkzNTAyJmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9';
+    const token = 'T1==cGFydG5lcl9pZD00NjQ3MzU2MiZzaWc9NjIxMTVjZGIyZTJjZTg0OTAxZWIxNjdiZjI2MjM3ZDI2MGNmY2ZjZDpzZXNzaW9uX2lkPTJfTVg0ME5qUTNNelUyTW41LU1UVTNOVFk1TkRBNU9USXdNSDQxVldadFkwWlJiV3AzYVhBeVUySjZOelY1TmpORGJHOS1mZyZjcmVhdGVfdGltZT0xNTc1Njk0MjM0Jm5vbmNlPTAuMTE1MTM5NDQ5MzgyMTU0NDgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU3ODI4NjIzMiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
 
     return (
 

@@ -98,7 +98,7 @@ export const AwesomeSauce = (props) => {
         return validEmails && validPhones && emailsMatching;
     };
     const redirectOnSuccess = () => {
-        props.history.push('/video-test');
+        props.history.push('/video-stream');
     };
     const submitForm = () => {
         const isFormValid = validateForm();
