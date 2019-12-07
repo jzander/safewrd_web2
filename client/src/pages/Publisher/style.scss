@@ -67,3 +67,9 @@
   margin: 0 auto;
   display: block;
 }
+
+p.status {
+  @media (max-width: 479px){
+    max-width: 340px !important;
+  }
+}

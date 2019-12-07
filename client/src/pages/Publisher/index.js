@@ -157,7 +157,7 @@ export const Publisher = (props) => {
                 height: '40px',
                 lineHeight: '40px',
                 borderRadius: '10px'
-            }}><span style={{
+            }} className={'status'}><span style={{
                 color: '#b00',
                 fontSize: '25px',
                 lineHeight: '0',
