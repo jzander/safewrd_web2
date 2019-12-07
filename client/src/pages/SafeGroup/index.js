@@ -16,7 +16,7 @@ export const SafeGroup = (props) => {
 
     useEffect(() => {
         fetch(
-            `http://159.203.169.170/v1/patron/event?id=${id}`,
+            `https://api.tranzmt.it/v1/patron/event?id=${id}`,
             {
                 method: "GET",
                 headers: new Headers({

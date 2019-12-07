@@ -72,7 +72,7 @@ export const VideoStream = (props) => {
                 lng: coords.longitude
             },
         };
-        fetch('http://159.203.169.170/v1/patron/event', {
+        fetch('https://api.tranzmt.it/v1/patron/event', {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(res => res.json())
