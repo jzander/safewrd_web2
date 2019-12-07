@@ -38,10 +38,7 @@ export const UserLocation = compose(
     );
 });
 
-export const Publisher = (props, interval1 = setInterval(() => {
-        console.log('This will run every second!');
-        setSeconds(seconds + 1)
-    }, 1000)) => {
+export const Publisher = (props) => {
         const {match} = props;
         const {id} = match.params;
         const [error, setError] = useState(null);
@@ -53,13 +50,18 @@ export const Publisher = (props, interval1 = setInterval(() => {
         const [apiKey, setApikey] = useState('');
         const [testURL, setTestURL] = useState('');
         const [seconds, setSeconds] = useState(0);
+        const [streamComplete, setStreamComplete] = useState(false);
 
         useEffect(() => {
             let timeout;
-            if (seconds < 30){
+            if (publishVideo && seconds < 30 && !streamComplete) {
                 timeout = setTimeout(() => {
                     setSeconds(seconds + 1);
                 }, 1000);
+            } else {
+                clearTimeout(timeout);
+                setSeconds(0);
+                stopVideo();
             }
             return () => {
                 clearTimeout(timeout);
@@ -97,7 +99,14 @@ export const Publisher = (props, interval1 = setInterval(() => {
 
         const toggleVideo = () => {
             setVideoPublish(!publishVideo);
+            setStreamComplete(!streamComplete);
+            setSeconds(seconds + 1);
         };
+
+        const stopVideo = ()=>{
+            setVideoPublish(false);
+            setStreamComplete(true);
+        }
 
         const onSessionError = error => setError(error);
 
@@ -134,29 +143,34 @@ export const Publisher = (props, interval1 = setInterval(() => {
             return (<></>)
         }
         return (
-            <div>
-                <div id="sessionStatus">Session Status: {connection}</div>
+            <div>{seconds < 31 &&
+            <div id="sessionStatus">Session Status: {!streamComplete ? connection : 'Offline'}</div>
+            }
                 {error ? (
                     <div className="error">sad
                         <strong>Error:</strong> {error}
                     </div>
                 ) : null}
-                <div><p style={{
-                    textAlign: 'center', background: '#fff',
-                    color: '#395ee5',
-                    maxWidth: '479px',
-                    margin: '0 auto 10px',
-                    height: '40px',
-                    lineHeight: '40px',
-                    borderRadius: '10px'
-                }} className={'status'}><span style={{
-                    color: '#b00',
-                    fontSize: '25px',
-                    lineHeight: '0',
-                    position: 'relative',
-                    top: '4px',
-                }}>&#9673;</span>&nbsp;&nbsp;<b>Emergency Call: {sec2time(seconds)}</b></p></div>
+                {seconds < 31 &&
+                <div>
+                    <p style={{
+                        textAlign: 'center', background: '#fff',
+                        color: '#395ee5',
+                        maxWidth: '479px',
+                        margin: '0 auto 10px',
+                        height: '40px',
+                        lineHeight: '40px',
+                        borderRadius: '10px'
+                    }} className={'status'}><span style={{
+                        color: '#b00',
+                        fontSize: '25px',
+                        lineHeight: '0',
+                        position: 'relative',
+                        top: '4px',
+                    }}>&#9673;</span>&nbsp;&nbsp;<b>Emergency Call: {sec2time(seconds)}</b></p></div>
+                }
                 <div className={'stream-wrapper'}>
+                    {seconds < 31 &&
                     <OTSession
                         apiKey={apiKey}
                         sessionId={session}
@@ -166,7 +180,7 @@ export const Publisher = (props, interval1 = setInterval(() => {
                     >
                         <div className={'button-wrapper'}>
                             <button id="videoButton" onClick={toggleVideo}>
-                                {publishVideo ? 'STOP' : 'STREAM'}
+                                {publishVideo && !streamComplete ? 'STOP' : 'STREAM'}
                             </button>
                         </div>
                         <OTPublisher
@@ -176,6 +190,7 @@ export const Publisher = (props, interval1 = setInterval(() => {
                             eventHandlers={publisherEventHandlers}
                         />
                     </OTSession>
+                    }
                 </div>
                 <div className={'map-container'}>
                     {userCoords &&
