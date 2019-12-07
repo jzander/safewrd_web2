@@ -30,7 +30,9 @@ export const VideoStream = (props) => {
     const [connection, setConnection] = useState('Connecting');
     const [publishVideo, setVideoPublish] = useState(true);
     const [userCoords, setUserLocation] = useState({});
-
+    const [session, setSession] = useState('');
+    const [token, setToken] = useState('');
+    const [apiKey, setApikey] = useState('');
     const sessionEventHandlers = {
         sessionConnected: () => setConnection('Connected'),
         sessionDisconnected: () => setConnection('Disconnected'),
@@ -61,12 +63,8 @@ export const VideoStream = (props) => {
 
     const onSessionError = error => setError(error);
 
-    const apiKey = '46473562';
-    const sessionId = '2_MX40NjQ3MzU2Mn5-MTU3NTY5NDA5OTIwMH41VWZtY0ZRbWp3aXAyU2J6NzV5NjNDbG9-fg';
-    const token = 'T1==cGFydG5lcl9pZD00NjQ3MzU2MiZzaWc9NjIxMTVjZGIyZTJjZTg0OTAxZWIxNjdiZjI2MjM3ZDI2MGNmY2ZjZDpzZXNzaW9uX2lkPTJfTVg0ME5qUTNNelUyTW41LU1UVTNOVFk1TkRBNU9USXdNSDQxVldadFkwWlJiV3AzYVhBeVUySjZOelY1TmpORGJHOS1mZyZjcmVhdGVfdGltZT0xNTc1Njk0MjM0Jm5vbmNlPTAuMTE1MTM5NDQ5MzgyMTU0NDgmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU3ODI4NjIzMiZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==';
 
     const showMap = (coords) => {
-        console.log(coords, "coords");
         const data = {
             user_id: id,
             location: {
@@ -74,13 +72,14 @@ export const VideoStream = (props) => {
                 lng: coords.longitude
             },
         };
-        // fetch('https://api.tranzmt.it/v1/patron/event', {
         fetch('http://159.203.169.170/v1/patron/event', {
             method: 'POST',
             body: JSON.stringify(data)
         }).then(res => res.json())
             .then(response => {
-                console.log(response, "response");
+                setSession(response['Session_id']);
+                setToken(response['Token']);
+                setApikey(response['Api_key']);
             });
         setUserLocation(coords)
     };
@@ -90,7 +89,9 @@ export const VideoStream = (props) => {
             showMap(position.coords);
         });
     }, []);
-
+    if (!apiKey) {
+        return (<></>)
+    }
     return (
         <div>
             <div id="sessionStatus">Session Status: {connection}</div>
@@ -102,7 +103,7 @@ export const VideoStream = (props) => {
             <div className={'stream-wrapper'}>
                 <OTSession
                     apiKey={apiKey}
-                    sessionId={sessionId}
+                    sessionId={session}
                     token={token}
                     onError={onSessionError}
                     eventHandlers={sessionEventHandlers}

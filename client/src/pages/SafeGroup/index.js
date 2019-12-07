@@ -9,10 +9,10 @@ export const SafeGroup = (props) => {
     const [error, setError] = useState(null);
     const [connection, setConnection] = useState('Connecting');
     const [publishVideo, setVideoPublish] = useState(false);
-    const [session, setSession]= useState('');
-    const [userCoords, setLocation]= useState('');
-    const [name, setName]= useState('');
-    const [apiKey, setApikey]= useState('');
+    const [session, setSession] = useState('');
+    const [userCoords, setLocation] = useState('');
+    const [name, setName] = useState('');
+    const [apiKey, setApikey] = useState('');
 
     useEffect(() => {
         fetch(
@@ -27,7 +27,10 @@ export const SafeGroup = (props) => {
             .then(res => res.json())
             .then(response => {
                 setSession(response['Session_id']);
-                setLocation(response['Location']);
+                setLocation({
+                    latitude: response['Location'].lat,
+                    longitude: response['Location'].lng
+                });
                 setApikey(response['Api_key']);
                 setName(response['Name']);
             })
@@ -87,8 +90,8 @@ export const SafeGroup = (props) => {
     const onSessionError = error => setError(error);
 
 
-    if (!apiKey){
-        return(<></>)
+    if (!apiKey) {
+        return (<></>)
     }
     return (
         <div>
